@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3738c646e9dfbd741b3e741fe790ef3b, type: 3}
+  m_Name: Level
+  m_EditorClassIdentifier: 
+  m_BackgroundCell: {fileID: 11400000, guid: bb501681b796e444d9ee8c02303748d7, type: 2}
+  m_Chips: {fileID: 11400000, guid: 07a608519aca6314ab930faeb0a35d70, type: 2}
+  m_TypeGrid: {fileID: 11400000, guid: dfbd3c03a0b5afb4aaa91ffc10c2a50e, type: 2}
+  m_Seed: 30
+  m_Scale: 6590
+  m_Mod: 8

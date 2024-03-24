@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee94eb1374aa1b24cb9c5055908d107a, type: 3}
-  m_Name: Square
+  m_Script: {fileID: 11500000, guid: b3292ab8f46c034488e4dbb21558db7f, type: 3}
+  m_Name: Chip Triangle
   m_EditorClassIdentifier: 
-  m_Size: {x: 10, y: 10}
+  m_Icon: {fileID: 21300000, guid: 41ebd167771c8534a8727e7fc1115e2a, type: 3}

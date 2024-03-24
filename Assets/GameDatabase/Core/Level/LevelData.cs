@@ -1,68 +1,55 @@
+using Sirenix.OdinInspector;
+
+using System;
+
+
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Bow.Data
 {
     [CreateAssetMenu(fileName = "Level", menuName = "Database/Level", order = 50)]
-    public class LevelData : ScriptableObject
+    public class LevelData : SerializedScriptableObject
     {
-        [SerializeField] private CellData m_BackgroundCell;
-        [SerializeField] private ChipDatabase m_Chips;
-        [SerializeField] private GridBase<Chip> m_TypeGrid;
-        [SerializeField] private int m_Seed = 1;
-        [SerializeField] private int m_Scale = 100;
-        [SerializeField] private int m_Mod = 100;
 
+        [SerializeField, PreviewField] private Sprite m_TileBackground;
 
-        public Vector2Int size { get; private set; }
+        [SerializeField, TabGroup("Chips")] private TileSlot[] m_Chips;
 
-        public Map<Chip> map { get; private set; }
+        #region Tiles
 
+        [SerializeField, TabGroup("Tiles")] private TileSlot[,] m_Tiles;
+        [SerializeField, TabGroup("Tiles")] private Vector2Int m_Size = new Vector2Int(10, 10);
+        [SerializeField, TabGroup("Tiles")] private int m_Seed = 1;
 
-        public void Play()
+        [Button]
+        [TabGroup("Tiles")]
+        private void CreateBoard()
         {
-            map = m_TypeGrid.Generate();
-            SetGridBackground(map);
-            SetChips(map);
-            size = map.size;
+            if (m_Chips == null && m_Chips.Length == 0) return;
+            m_Tiles = new TileSlot[m_Size.x, m_Size.y];
+            int[,] tiles = Match.Create(m_Size, m_Seed, m_Chips.Length);
+            m_Tiles = Match.Bundle(m_Chips, tiles);
         }
 
-        public void SetGridBackground(Map<Chip> map)
+        #endregion
+
+        public Sprite tileBackground => m_TileBackground;
+
+        public Vector2Int size => m_Size;
+
+        public TileSlot[,] slots => m_Tiles;
+
+        private void OnValidate()
         {
-            for (int x = 0; x < map.size.x; x++)
+            m_Chips = m_Chips ?? new TileSlot[4];
+
+            m_Tiles = m_Tiles ?? new TileSlot[m_Size.x, m_Size.y];
+
+            for (int i = 0; i < m_Chips.Length; i++)
             {
-                for (int y = 0; y < map.size.y; y++)
-                {
-                    if (map.cells[x, y].border) continue;
-
-                    SpriteRenderer renderer = m_BackgroundCell.GetNewSprite();
-                    renderer.transform.position = map.cells[x, y].position;
-                }
+                if (m_Chips[i].Slot == null) continue;
+                m_Chips[i].Slot.id = i;
             }
-        }
-
-        public void SetChips(Map<Chip> map)
-        {
-            m_Chips.RemoveParent();
-
-            for (int x = 0; x < map.size.x; x++)
-            {
-                for (int y = 0; y < map.size.y; y++)
-                {
-                    GetNewChip(new Vector2Int(x, y));
-                }
-            }
-        }
-
-        public Chip GetNewChip(Vector2Int index)
-        {
-            m_Seed = m_Seed <= 0 ? 1 : m_Seed;
-            Vector2 position = map.cells[index.x, index.y].position;
-            Chip renderer = m_Chips.GetNewChip((Vector2)index / m_Mod * m_Scale, position);
-
-            renderer.index = new Vector2Int(index.x, index.y);
-            map.cells[index.x, index.y].renderer = renderer;
-            return renderer;
         }
     }
 }

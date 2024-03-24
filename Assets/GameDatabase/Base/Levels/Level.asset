@@ -12,9 +12,658 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3738c646e9dfbd741b3e741fe790ef3b, type: 3}
   m_Name: Level
   m_EditorClassIdentifier: 
-  m_BackgroundCell: {fileID: 11400000, guid: bb501681b796e444d9ee8c02303748d7, type: 2}
-  m_Chips: {fileID: 11400000, guid: 07a608519aca6314ab930faeb0a35d70, type: 2}
-  m_TypeGrid: {fileID: 11400000, guid: dfbd3c03a0b5afb4aaa91ffc10c2a50e, type: 2}
-  m_Seed: 30
-  m_Scale: 6590
-  m_Mod: 8
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 2ed8a40393b6b5040a786b5dae99c66c, type: 2}
+    - {fileID: 11400000, guid: ecf45da5d9205d64b8a834d1f7dea9ef, type: 2}
+    - {fileID: 11400000, guid: d2c57bc2cc76d1c47ae6de588781bfc9, type: 2}
+    - {fileID: 11400000, guid: b84dfaf49b9d52d42b0266240dbbf707, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_Chips
+      Entry: 7
+      Data: 0|Bow.TileSlot[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: m_Tiles
+      Entry: 7
+      Data: 1|Bow.TileSlot[,], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 64
+    - Name: ranks
+      Entry: 1
+      Data: 8|8
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Bow.TileSlot, Assembly-CSharp
+    - Name: Slot
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  m_TileBackground: {fileID: 21300000, guid: 3d71af6161f549f4ab0fe410b29e3b97, type: 3}
+  m_Size: {x: 8, y: 8}
+  m_Seed: 0

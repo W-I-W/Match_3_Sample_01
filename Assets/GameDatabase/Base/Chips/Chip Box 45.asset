@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c266f954beea74a8919ba861b3596d, type: 3}
-  m_Name: Background Map
+  m_Script: {fileID: 11500000, guid: b3292ab8f46c034488e4dbb21558db7f, type: 3}
+  m_Name: Chip Box 45
   m_EditorClassIdentifier: 
-  m_Cell: {fileID: 21300000, guid: 3d71af6161f549f4ab0fe410b29e3b97, type: 3}
-  m_Depth: 10
+  m_Icon: {fileID: 21300000, guid: d3f0a4b0bc51c1947b9fc25b593a0167, type: 3}

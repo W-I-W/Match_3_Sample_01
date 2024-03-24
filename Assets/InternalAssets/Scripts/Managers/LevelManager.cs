@@ -20,7 +20,6 @@ public class LevelManager : MonoBehaviour
     public void SelectLevel(LevelData level)
     {
         this.level = level;
-        level.Play();
         onGenerate?.Invoke(level.size);
     }
 }

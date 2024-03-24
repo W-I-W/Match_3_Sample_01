@@ -707,6 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Level: {fileID: 11400000, guid: 3bf001ec34305cc489c6188c1f6c983c, type: 2}
+  m_GenerateTileEase: 4
 --- !u!114 &1077523517
 MonoBehaviour:
   m_ObjectHideFlags: 0

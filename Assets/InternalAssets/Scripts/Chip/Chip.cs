@@ -1,17 +1,23 @@
+using Bow;
+
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 
-
-namespace Bow
+public class Chip : MonoBehaviour
 {
-    public class Chip : MonoBehaviour
+    public Vector2 position { get => transform.position; set => transform.position = new Vector3(value.x, value.y, transform.position.z); }
+
+    public Vector2Int matrix { get; set; }
+
+    public int id { get; set; }
+
+
+    public Chip SetSlot( TileSlot chip)
     {
-        public Vector2Int index { get; set; }
-
-        public Vector2 position { get => transform.localPosition; set => transform.localPosition = value; }
-
-        public int id { get; set; }
+        position = chip.position;
+        matrix = chip.matrix;
+        return this;
     }
 }

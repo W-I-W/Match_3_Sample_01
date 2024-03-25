@@ -14,8 +14,9 @@ namespace Bow
 
         public void PlayLevel()
         {
-            LevelGenerator.tileEase = m_GenerateTileEase;
-            LevelGenerator.Play(m_Level);
+            LevelGenerator generator = new LevelGenerator(m_Level);
+            generator.tileEase = m_GenerateTileEase;
+            generator.Play();
         }
     }
 }

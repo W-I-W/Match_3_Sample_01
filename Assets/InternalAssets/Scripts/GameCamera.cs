@@ -19,7 +19,7 @@ namespace Bow
             m_Camera = GetComponent<Camera>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
             LevelManager.instance.onGenerate += Resize;
         }
@@ -29,7 +29,7 @@ namespace Bow
             LevelManager.instance.onGenerate -= Resize;
         }
 
-        private void Resize(Vector2Int size)
+        private void Resize(Vector2 size)
         {
             ResizeWidth(size.x);
         }

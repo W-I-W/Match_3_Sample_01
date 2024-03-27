@@ -55,8 +55,8 @@ public class ChipChecker : MonoBehaviour
         if (chips.Count != 1)
         {
             TakeDestroy(chips);
-            UpdateChips();
-            AddChips();
+            //UpdateChips();
+            //AddChips();
             return;
         }
         m_Seq.AppendCallback(() => Swap(matrixStart, matrixEnd));
@@ -66,6 +66,7 @@ public class ChipChecker : MonoBehaviour
     {
         Chip chipStart = level.slots[b.x, b.y].chip;
         Chip chipEnd = level.slots[a.x, a.y].chip;
+
 
         m_Seq = DOTween.Sequence();
         m_Seq.Append(chipStart.SetSlot(level.slots[a.x, a.y]));
@@ -215,10 +216,11 @@ public class ChipChecker : MonoBehaviour
 
                 Chip chip = LevelGenerator.pool.Get();
                 Vector2 position = level.slots[x, 0].position + Vector2.up;
+                Debug.Log(level.slots[x, 0].matrix+":"+ level.slots[x, 0].position);
                 chip.ResetChip(position);
-                m_Seq = DOTween.Sequence();
-                m_Seq.Append(chip.SetSlot(level.slots[x, y]).SetDelay(0.1f));
-                level.slots[x, y].chip = chip;
+                //m_Seq = DOTween.Sequence();
+                //m_Seq.Append(chip.SetSlot(level.slots[x, y]).SetDelay(0.1f));
+                //level.slots[x, y].chip = chip;
             }
         }
     }

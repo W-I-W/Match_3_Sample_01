@@ -74,9 +74,10 @@ public class LevelGenerator
 
     private void OnReleased(Chip chip)
     {
-        //LevelData level = LevelManager.instance.level;
+        LevelData level = LevelManager.instance.level;
         //Chip chip = level.slots[matrix.x, matrix.y].chip;
-        chip.gameObject.SetActive(false);
+        chip.ResetChip(level.slots[0, 0].position + Vector2.up);
+        chip.gameObject.SetActive(true);
     }
 
 

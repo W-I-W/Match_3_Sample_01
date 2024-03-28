@@ -2,11 +2,12 @@ using Bow;
 
 using DG.Tweening;
 
+using System.Net;
+
 using UnityEngine;
 
 public class Chip : MonoBehaviour
 {
-    private readonly float Duration = 0.2f;
 
     private Vector3 m_Position = Vector2.zero;
 
@@ -20,12 +21,18 @@ public class Chip : MonoBehaviour
 
     public int id { get; set; }
 
-    public Tween SetSlot(TileSlot chip)
+    public void SetSlot(TileSlot chip, float duration = 0.2f)
     {
-        float dis = Vector2.Distance(position, chip.position);
+        //float dis = Vector2.Distance(position, chip.position);
         position = chip.position;
         matrix = chip.matrix;
-        return transform.DOMove(position, Duration * dis);
+        //return transform.DOMove(position, duration * dis);
+    }
+
+    public Tween DoMove(float duration = 0.2f)
+    {
+        float dis = Vector2.Distance(position, transform.position);
+        return transform.DOMove(position, duration * dis);
     }
 
     public void Init(Vector3 startPos)
@@ -34,9 +41,9 @@ public class Chip : MonoBehaviour
         position = startPos;
     }
 
-    public  void ResetChip(Vector2 startPos)
+    public void SetPosition(Vector2 position)
     {
-        transform.position = new Vector3(startPos.x, startPos.y, transform.position.z);
-        position = startPos;
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
+        this.position = position;
     }
 }

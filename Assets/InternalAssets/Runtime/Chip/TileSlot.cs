@@ -5,7 +5,7 @@ namespace Bow
 {
     public struct TileSlot
     {
-        public Tile Slot;
+        public Tile slot;
 
         public Chip chip { get; set; }
 

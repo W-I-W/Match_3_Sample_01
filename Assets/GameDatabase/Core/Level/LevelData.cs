@@ -37,7 +37,13 @@ namespace Bow.Data
 
         public Vector2Int size => m_Size;
 
+        public TileSlot[] chips => m_Chips;
+
+        public int sizeChip => m_Chips.Length;
+
+
         public TileSlot[,] slots => m_Tiles;
+
 
         private void OnValidate()
         {
@@ -47,8 +53,8 @@ namespace Bow.Data
 
             for (int i = 0; i < m_Chips.Length; i++)
             {
-                if (m_Chips[i].Slot == null) continue;
-                m_Chips[i].Slot.id = i;
+                if (m_Chips[i].slot == null) continue;
+                m_Chips[i].slot.id = i;
             }
         }
     }

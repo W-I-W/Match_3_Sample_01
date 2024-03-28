@@ -2,8 +2,6 @@ using Bow.Data;
 
 using DG.Tweening;
 
-using Microsoft.Unity.VisualStudio.Editor;
-
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -14,13 +12,13 @@ public class LevelGenerator
         LevelManager.instance.Init(level);
     }
 
-    //public static LevelGenerator instance;
     public static IObjectPool<Chip> pool { get; set; }
+
     private Sequence m_Seq;
 
-    private readonly int DepthBackground = 10;
-    private readonly int DepthTile = -10;
-    private readonly float HalfUnit = 0.5f;
+    private readonly int m_DepthBackground = 10;
+    private readonly int m_DepthTile = -10;
+    private readonly float m_HalfUnit = 0.5f;
 
 
     public float backgroundSpeed { get; set; } = 0.01f;
@@ -33,9 +31,9 @@ public class LevelGenerator
 
     private int yCount => LevelManager.instance.level.slots.GetLength(1);
 
-    private float halfX => xCount / 2f - HalfUnit;
+    private float halfX => xCount / 2f - m_HalfUnit;
 
-    private float halfY => yCount / 2f - HalfUnit;
+    private float halfY => yCount / 2f - m_HalfUnit;
 
     private Transform parentTile { get; set; }
 
@@ -55,29 +53,23 @@ public class LevelGenerator
         Chip chip = AddChip(obj);
         chip.renderer = renderer;
         chip.collider = collider;
-
-        m_Seq.Append(obj.transform.DOScale(1, tileSpeed)
-            .SetDelay(Random.Range(0f, 0.2f))
-            .SetEase(tileEase));
         return chip;
     }
 
     private void OnChip(Chip chip)
     {
         //LevelData level = LevelManager.instance.level;
-        //Chip chip = level.slots[matrix.x, matrix.y].chip;
-        //Vector2 position = level.slots[matrix.x, matrix.y].position;
-        //chip.Init();
+        //chip.SetPosition(level.slots[0, 0].position + Vector2.up);
+        chip.transform.DOScale(1, tileSpeed).
+        SetEase(tileEase);
         chip.gameObject.SetActive(true);
-
     }
 
     private void OnReleased(Chip chip)
     {
         LevelData level = LevelManager.instance.level;
-        //Chip chip = level.slots[matrix.x, matrix.y].chip;
-        chip.ResetChip(level.slots[0, 0].position + Vector2.up);
-        chip.gameObject.SetActive(true);
+        chip.SetPosition(level.slots[0, 0].position + Vector2.up);
+        chip.gameObject.SetActive(false);
     }
 
 
@@ -90,13 +82,13 @@ public class LevelGenerator
         {
             for (int y = 0; y < yCount; y++)
             {
-                if (level.slots[x, y].Slot == null)
+                if (level.slots[x, y].slot == null)
                 {
                     level.slots[x, y].isSlot = false;
                     continue;
                 }
 
-                Vector3 position = new Vector3(-halfX + x, -halfY + xCount - 1 - y, DepthBackground);
+                Vector3 position = new Vector3(-halfX + x, -halfY + xCount - 1 - y, m_DepthBackground);
                 level.slots[x, y].isSlot = true;
                 level.slots[x, y].position = position;
                 level.slots[x, y].matrix = new Vector2Int(x, y);
@@ -127,11 +119,11 @@ public class LevelGenerator
 
                 m_Seq = DOTween.Sequence();
                 Vector2 position = level.slots[x, y].position;
-                Chip chip = InstantiateChip();
-                chip.id = level.slots[x, y].Slot.id;
+                Chip chip = pool.Get();
+                chip.id = level.slots[x, y].slot.id;
                 chip.matrix = level.slots[x, y].matrix;
-                chip.renderer.sprite = level.slots[x, y].Slot.icon;
-                chip.Init(new Vector3(position.x, position.y, DepthTile));
+                chip.renderer.sprite = level.slots[x, y].slot.icon;
+                chip.Init(new Vector3(position.x, position.y, m_DepthTile));
                 level.slots[x, y].chip = chip;
             }
         }

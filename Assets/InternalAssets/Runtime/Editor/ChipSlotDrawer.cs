@@ -25,10 +25,10 @@ namespace Bow.Editor
         protected override TileSlot DrawElement(Rect rect, TileSlot value)
         {
             int id = DragAndDropUtilities.GetDragAndDropId(rect);
-            DragAndDropUtilities.DrawDropZone(rect, value.Slot?.icon, null, id);
+            DragAndDropUtilities.DrawDropZone(rect, value.slot?.icon, null, id);
 
             value = DragAndDropUtilities.DropZone(rect, value);
-            value.Slot = DragAndDropUtilities.DropZone<Tile>(rect, value.Slot);
+            value.slot = DragAndDropUtilities.DropZone<Tile>(rect, value.slot);
             value = DragAndDropUtilities.DragZone(rect, value, true, true);
 
             return value;

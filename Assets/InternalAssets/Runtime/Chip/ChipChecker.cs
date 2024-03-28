@@ -1,25 +1,28 @@
-using Bow;
 using Bow.Data;
 
 using DG.Tweening;
 
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
-public class ChipChecker : MonoBehaviour
+public sealed class ChipChecker : MonoBehaviour
 {
     private Camera m_Camera;
 
     private Chip[] m_Chips;
 
-    private LevelData level => LevelManager.instance.level;
-
     private Sequence m_Seq;
+
+    private readonly float m_DelayStartChip = 0.0f;
+    private readonly float m_DelayCreateChip = 0.12f;
+
+    private LevelData level => LevelManager.instance.level;
 
 
     private void Start()
@@ -33,7 +36,7 @@ public class ChipChecker : MonoBehaviour
         Vector2 mouse = Mouse.current.position.value;
         Vector2 position = m_Camera.ScreenToWorldPoint(mouse);
         RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
-        int index = Convert.ToInt32(value.Get());
+        int index = System.Convert.ToInt32(value.Get());
         if (hit.transform == null) return;
 
         bool isChip = hit.transform.TryGetComponent(out Chip chip);
@@ -49,32 +52,82 @@ public class ChipChecker : MonoBehaviour
         int dis = Mathf.Abs((matrixEnd.x + matrixEnd.y) - (matrixStart.x + matrixStart.y));
         if (dis != 1) return;
 
-
-        Swap(matrixEnd, matrixStart);
-        List<Chip> chips = FindMatch(matrixEnd);
-        if (chips.Count != 1)
+        m_Seq = DOTween.Sequence();
+        m_Seq.Append(Swap(matrixEnd, matrixStart));
+        List<Chip> chipsStart = FindMatch(matrixStart);
+        List<Chip> chipsEnd = FindMatch(matrixEnd);
+        if (chipsStart.Count != 1 || chipsEnd.Count != 1)
         {
-            TakeDestroy(chips);
-            //UpdateChips();
-            //AddChips();
+            m_Seq.AppendCallback(() => FindAll());
             return;
         }
-        m_Seq.AppendCallback(() => Swap(matrixStart, matrixEnd));
+        m_Seq.Append(Swap(matrixStart, matrixEnd));
     }
 
-    private void Swap(Vector2Int a, Vector2Int b)
+    private IEnumerator OnStep(List<Chip> chips)
+    {
+        Sequence seq = DOTween.Sequence();
+        seq.Append(TakeDestroy(chips));
+        while (seq.active)
+            yield return null;
+
+        seq = DOTween.Sequence();
+        seq.Append(UpdateChips());
+        while (seq.active)
+            yield return null;
+
+        seq = DOTween.Sequence();
+        seq.Append(AddChips());
+        while (seq.active)
+            yield return null;
+
+        FindAll();
+        yield return null;
+    }
+
+    private Sequence Swap(Vector2Int a, Vector2Int b)
     {
         Chip chipStart = level.slots[b.x, b.y].chip;
         Chip chipEnd = level.slots[a.x, a.y].chip;
 
-
-        m_Seq = DOTween.Sequence();
-        m_Seq.Append(chipStart.SetSlot(level.slots[a.x, a.y]));
-        m_Seq = DOTween.Sequence();
-        m_Seq.Append(chipEnd.SetSlot(level.slots[b.x, b.y]));
+        chipStart.SetSlot(level.slots[a.x, a.y]);
+        chipEnd.SetSlot(level.slots[b.x, b.y]);
 
         level.slots[b.x, b.y].chip = chipEnd;
         level.slots[a.x, a.y].chip = chipStart;
+
+
+        Sequence seq = DOTween.Sequence();
+        seq.Join(level.slots[a.x, a.y].chip.DoMove());
+        seq.Join(level.slots[b.x, b.y].chip.DoMove());
+
+        return seq;
+    }
+
+    private Sequence FindAll()
+    {
+        bool status = false;
+        List<Chip> allChips = new List<Chip>();
+        for (int x = 0; x < level.size.x; x++)
+        {
+            for (int y = 0; y < level.size.y; y++)
+            {
+                if (level.slots[x, y].isSlot == false) continue;
+                if (level.slots[x, y].chip == null) continue;
+
+                List<Chip> chips = FindMatch(new Vector2Int(x, y));
+                if (chips.Count != 1)
+                {
+                    allChips.AddRange(chips);
+                    status = true;
+                }
+            }
+        }
+        if (status == false) return m_Seq;
+        var newChips=allChips.Distinct().ToList();
+        StartCoroutine(OnStep(newChips));
+
+        return m_Seq;
     }
 
     private List<Chip> FindMatch(Vector2Int index)
@@ -147,6 +200,8 @@ public class ChipChecker : MonoBehaviour
     public List<Chip> Aslant(Vector2Int index)
     {
         var chips = new List<Chip>();
+        if (level.slots[index.x, index.y].slot == false) return chips;
+
         chips.AddRange(AcrossAt(index, Vector2Int.down + Vector2Int.left));
         chips.AddRange(AcrossAt(index, Vector2Int.down + Vector2Int.right));
         chips.AddRange(AcrossAt(index, Vector2Int.up + Vector2Int.left));
@@ -158,9 +213,14 @@ public class ChipChecker : MonoBehaviour
     {
         var chips = new List<Chip>();
         int x = (index + shift).x;
-        int y = (index + shift).x;
+        int y = (index + shift).y;
         if (x < 0 || x >= level.size.x) return chips;
         if (y < 0 || y >= level.size.y) return chips;
+
+        if (level.slots[index.x, index.y].slot == false) return chips;
+        if (level.slots[index.x + shift.x, index.y + shift.y].slot == false) return chips;
+        if (level.slots[index.x + shift.x, index.y].slot == false) return chips;
+        if (level.slots[index.x, index.y + shift.y].slot == false) return chips;
 
         Chip center = level.slots[index.x, index.y].chip;
         Chip aslant = level.slots[index.x + shift.x, index.y + shift.y].chip;
@@ -178,8 +238,9 @@ public class ChipChecker : MonoBehaviour
         return new List<Chip>() { aslant, shiftX, shiftY };
     }
 
-    private void UpdateChips()
+    private Tween UpdateChips()
     {
+        Sequence seq = DOTween.Sequence();
         int maxX = level.size.x;
         int maxY = level.size.y;
 
@@ -195,45 +256,67 @@ public class ChipChecker : MonoBehaviour
 
                     level.slots[x, y].chip = level.slots[x, i].chip;
                     level.slots[x, y].chip.SetSlot(level.slots[x, y]);
+                    seq.Join(level.slots[x, y].chip.DoMove());
+
                     level.slots[x, i].chip = null;
                     break;
                 }
             }
         }
+        return seq;
     }
 
-    private void AddChips()
+    private Tween AddChips()
     {
+        Sequence seq = DOTween.Sequence().SetDelay(m_DelayStartChip);
+        //m_Seq = DOTween.Sequence();
         int maxX = level.size.x;
         int maxY = level.size.y;
-
         for (int x = 0; x < maxX; x++)
         {
+            seq = DOTween.Sequence();
             for (int y = maxY - 1; y >= 0; y--)
             {
                 if (level.slots[x, y].isSlot == false) continue;
                 if (level.slots[x, y].chip != null) continue;
 
                 Chip chip = LevelGenerator.pool.Get();
+
                 Vector2 position = level.slots[x, 0].position + Vector2.up;
-                Debug.Log(level.slots[x, 0].matrix+":"+ level.slots[x, 0].position);
-                chip.ResetChip(position);
-                //m_Seq = DOTween.Sequence();
-                //m_Seq.Append(chip.SetSlot(level.slots[x, y]).SetDelay(0.1f));
-                //level.slots[x, y].chip = chip;
+                chip.SetPosition(position);
+                int indexChip = Random.Range(0, level.sizeChip);
+                chip.renderer.sprite = level.chips[indexChip].slot.icon;
+                chip.id = indexChip;
+                chip.SetSlot(level.slots[x, y], m_DelayCreateChip);//.SetDelay(1);
+                level.slots[x, y].chip = chip;
+                seq.Append(level.slots[x, y].chip.DoMove());
             }
         }
+        return seq;
     }
 
-    private void TakeDestroy(List<Chip> chips)
+    private Sequence TakeDestroy(List<Chip> chips)
     {
-
+        Sequence seq = DOTween.Sequence();
         for (int i = chips.Count - 1; i >= 0; i--)
         {
-            level.slots[chips[i].matrix.x, chips[i].matrix.y].chip = null;
-            LevelGenerator.pool.Release(chips[i]);
-            chips.RemoveAt(i);
-
+            if (level.slots[chips[i].matrix.x, chips[i].matrix.y].chip == null)
+            {
+                chips.RemoveAt(i);
+                continue;
+            }
+            seq.Join(level.slots[chips[i].matrix.x, chips[i].matrix.y].chip.transform.DOScale(0, 0.5f));
         }
+        
+        seq.AppendCallback(() =>
+        {
+            for (int i = chips.Count - 1; i >= 0; i--)
+            {
+                level.slots[chips[i].matrix.x, chips[i].matrix.y].chip = null;
+                LevelGenerator.pool.Release(chips[i]);
+                chips.RemoveAt(i);
+            }
+        });
+        return seq;
     }
 }

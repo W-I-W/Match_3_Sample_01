@@ -1,3 +1,4 @@
+-----------------------------------------------------------------------------
 After downloading the project in Unity, you need to install the following plugins:
 
 DoTween Pro: https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416

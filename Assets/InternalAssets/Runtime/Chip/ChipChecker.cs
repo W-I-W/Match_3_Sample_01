@@ -71,10 +71,14 @@ public sealed class ChipChecker : MonoBehaviour
         while (seq.active)
             yield return null;
 
+        seq.Kill();
+
         seq = DOTween.Sequence();
         seq.Append(UpdateChips());
         while (seq.active)
             yield return null;
+
+        seq.Kill();
 
         seq = DOTween.Sequence();
         seq.Append(AddChips());
@@ -312,8 +316,8 @@ public sealed class ChipChecker : MonoBehaviour
         {
             for (int i = chips.Count - 1; i >= 0; i--)
             {
+                LevelGenerator.pool.Release(level.slots[chips[i].matrix.x, chips[i].matrix.y].chip);
                 level.slots[chips[i].matrix.x, chips[i].matrix.y].chip = null;
-                LevelGenerator.pool.Release(chips[i]);
                 chips.RemoveAt(i);
             }
         });

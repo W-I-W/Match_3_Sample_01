@@ -31,8 +31,8 @@ public class Chip : MonoBehaviour
 
     public Tween DoMove(float duration = 0.2f)
     {
-        float dis = Vector2.Distance(position, transform.position);
-        return transform.DOMove(position, duration * dis);
+        //float dis = Vector2.Distance(position, transform.position)*duration;
+        return transform.DOMove(position, duration);
     }
 
     public void Init(Vector3 startPos)

@@ -18,3 +18,5 @@ In the level inspector, the Chips tab allows you to customize the game tiles
 In the level parameters inspector, the “Tiles” tab allows you to configure the game’s starting scene, set the scene size and click the “Generate” button.
 
 ![Image alt](https://raw.githubusercontent.com/W-I-W/Match_3_Sample_01/main/Image/Griid.png)
+
+-----------------------------------------------------------------------------

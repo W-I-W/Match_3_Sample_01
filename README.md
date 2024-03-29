@@ -20,3 +20,5 @@ In the level parameters inspector, the “Tiles” tab allows you to configure t
 ![Image alt](https://raw.githubusercontent.com/W-I-W/Match_3_Sample_01/main/Image/Griid.png)
 
 -----------------------------------------------------------------------------
+
+![image](https://github.com/W-I-W/Match_3_Sample_01/assets/108679461/d32d4ca9-68f0-4d0f-9bf7-2fc228e5bba3)

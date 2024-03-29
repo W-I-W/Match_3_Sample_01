@@ -24,3 +24,5 @@ In the level parameters inspector, the “Tiles” tab allows you to configure t
 To generate a level, pass the level to the levelGenerator constructor and call the play method
 
 ![](https://raw.githubusercontent.com/W-I-W/Match_3_Sample_01/main/Image/Script_GeneratorLevel.png)
+
+-----------------------------------------------------------------------------
